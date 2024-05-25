@@ -20,7 +20,7 @@ class RunnerDay(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     runner: Mapped[list['Users']] = relationship(back_populates='runnerday')
     runner_id= Column(Integer, ForeignKey('users.id'))
-    day_select: Mapped[date] = mapped_column(Date())
+    day_select: Mapped[int] = mapped_column(Integer)
     day_distance: Mapped[float] = mapped_column(Float)
     day_time: Mapped[time] = mapped_column(Time(timezone=True))
     day_average_temp: Mapped[time] = mapped_column(Time(timezone=True))
