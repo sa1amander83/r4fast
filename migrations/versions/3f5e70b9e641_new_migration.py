@@ -1,8 +1,8 @@
 """new migration
 
-Revision ID: 6db02cef909f
+Revision ID: 3f5e70b9e641
 Revises: 
-Create Date: 2024-05-25 20:14:12.228679
+Create Date: 2024-05-27 22:10:38.670802
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '6db02cef909f'
+revision: str = '3f5e70b9e641'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -30,9 +30,9 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('runner', sa.Integer(), nullable=False),
     sa.Column('hashed_password', sa.String(), nullable=False),
+    sa.Column('категория', sa.Enum('Новичок', 'Любитель', 'Профи', name='категория'), nullable=False),
     sa.Column('team_id', sa.Integer(), nullable=True),
-    sa.Column('runner_category', sa.Integer(), nullable=False),
-    sa.Column('runner_gender', sa.String(), nullable=False),
+    sa.Column('пол', sa.Enum('М', 'Ж', name='gender_enum'), nullable=False),
     sa.Column('zabeg22', sa.Boolean(), nullable=False),
     sa.Column('zabeg23', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['team_id'], ['teams.id'], ),

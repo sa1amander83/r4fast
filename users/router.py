@@ -7,7 +7,7 @@ from users.dao import UserDAO
 from users.dependecies import get_current_user
 from users.exceptions import UserAlreadyExistsException, CannotAddDataToDatabase
 from users.models import Users
-from users.schemas import SUsers
+from users.schemas import SUsers, SUsersLogin
 
 router_auth = APIRouter(
     prefix="/auth",
@@ -52,7 +52,7 @@ async def register_user(user_data: SUsers):
 
 
 @router_auth.post("/login")
-async def login_user(response: Response, user_data: SUsers):
+async def login_user(response: Response, user_data: SUsersLogin):
     user = await authenticate_user(user_data.runner, user_data.password)
     access_token = create_access_token({"sub": str(user.id)})
     response.set_cookie("runner_access_token", access_token, httponly=True)
